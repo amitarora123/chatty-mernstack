@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { Image, Send, X } from "lucide-react";
 
-const MessageInput = () => {
+const MessageInput = ({ fetchMessages }) => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
@@ -35,6 +35,7 @@ const MessageInput = () => {
         text: text.trim(),
         image: imagePreview,
       });
+     await fetchMessages();
 
       setText("");
       setImagePreview(null);

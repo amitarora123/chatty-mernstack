@@ -4,6 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
 import { asyncHandler } from "../utils/AsyncHandler.js";
+import { getReciverSocketId, io } from "../lib/socket.js";
 const getUsersForSidebar = asyncHandler(async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
@@ -68,6 +69,12 @@ const sendMessage = async (req, res) => {
     });
 
     await newMessage.save();
+
+    const receiverSocketId = getReciverSocketId(receiverId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     return res
       .status(200)
