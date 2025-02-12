@@ -29,30 +29,33 @@ Welcome to the MERN Stack ChatApp project! This application is a real-time chat 
     ```
 3. Install dependencies for both frontend and backend:
     ```bash
-    cd client
+    cd frontend
     npm install
-    cd ../server
+    cd ../backend
     npm install
     ```
 4. Create a `.env` file in the `server` directory and add your MongoDB URI and other environment variables:
     ```env
     MONGO_URI=your_mongodb_uri
     JWT_SECRET=your_jwt_secret
+    CLOUDINARY_CLOUD_NAME=your_cloud_name
+    CLOUDINARY_API_KEY=your_api_key
+    CLOUDINARY_API_SECRET=your_api_secret
     ```
 
 ## Usage
 
 1. Start the backend server:
     ```bash
-    cd server
-    npm start
+    cd backend
+    npm run start
     ```
 2. Start the frontend development server:
     ```bash
-    cd client
-    npm start
+    cd frontend
+    npm run dev
     ```
-3. Open your browser and navigate to `http://localhost:3000`.
+3. Open your browser and navigate to `http://localhost:5173`.
 
 ## Contributing
 
@@ -64,7 +67,7 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any inquiries, please contact [yourname@example.com](mailto:yourname@example.com).
+For any inquiries, please contact [baghlaamit06@gmail.com](mailto:baghlaamit06@gmail.com).
 
 ---
 
