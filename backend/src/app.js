@@ -4,6 +4,7 @@ import ApiError from "./utils/ApiError.js";
 import cookieParser from "cookie-parser";
 import messageRouter from "./routes/message.routes.js";
 import cors from "cors";
+
 const app = express();
 
 app.use(
@@ -38,4 +39,6 @@ app.use((err, req, res, next) => {
     errors: [],
   });
 });
+
+
 export default app;
