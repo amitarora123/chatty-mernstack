@@ -6,9 +6,8 @@ Welcome to the MERN Stack ChatApp project! This application is a real-time chat 
 
 - Real-time messaging
 - User authentication
-- Private and group chats
+- Private  chats
 - Responsive design
-- Emoji support
 
 ## Technologies Used
 
