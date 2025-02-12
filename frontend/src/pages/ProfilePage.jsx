@@ -17,10 +17,10 @@ const ProfilePage = () => {
     // await updateProfile(formData);
 
     // blob method
-    
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    
+
     reader.onload = async () => {
       const base64Image = reader.result;
       setSelectedImage(base64Image);
@@ -29,8 +29,8 @@ const ProfilePage = () => {
   };
   return (
     <div className="h-screen pt-20">
-      <div className="max-w-2xl mx-auto p-4 py-8">
-        <div className="bg-base-300 rounded-xl p-6 space-y-8">
+      <div className="max-w-2xl p-4 py-8 mx-auto">
+        <div className="p-6 space-y-8 bg-base-300 rounded-xl">
           <div className="text-center">
             <h1 className="text-2xl font-semibold">Profile</h1>
             <p className="mt-2">Your profile information</p>
@@ -41,7 +41,7 @@ const ProfilePage = () => {
               <img
                 src={selectedImage || authUser.profilePic || "/avtar.png"}
                 alt="Profile"
-                className="size-32 rounded-full object-cover border-4"
+                className="object-cover border-4 rounded-full size-32"
               />
               <label
                 htmlFor="avatar-upload"
@@ -68,7 +68,7 @@ const ProfilePage = () => {
           </div>
           <div className="space-y-6">
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
                 <User className="size-4" />
                 Full Name
               </div>
@@ -76,13 +76,27 @@ const ProfilePage = () => {
             </div>
 
             <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
+              <div className="flex items-center gap-2 text-sm text-zinc-400">
                 <Mail className="size-4" />
                 Email Address
               </div>
-              <p className="px-4 py-2 5 bg-base-200 rounded-lg border">
+              <p className="px-4 py-2 border rounded-lg 5 bg-base-200">
                 {authUser?.email}
               </p>
+            </div>
+          </div>
+
+          <div className="p-6 mt-6 bg-base-300 rounded-xl">
+            <h2 className="mb-4 text-lg font-medium">Account Information</h2>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center justify-between py-2 border-b border-zinc-700">
+                <span>Member Since</span>
+                <span>{authUser.createdAt?.split("T")[0]}</span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span>Account Status</span>
+                <span className="text-green-500">Active</span>
+              </div>
             </div>
           </div>
         </div>

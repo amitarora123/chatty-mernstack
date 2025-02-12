@@ -11,7 +11,7 @@ import {
   User,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthImagePattern from "./AuthImagePattern";
+import AuthImagePattern from "../components/AuthImagePattern";
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();

@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { Routes, Route, Navigate } from "react-router-dom";
-import SignupPage from "./components/SignupPage";
-import ProfilePage from "./components/ProfilePage";
-import LoginPage from "./components/LoginPage";
-import SettingsPage from "./components/SettingsPage";
-import HomePage from "./components/HomePage";
+import SignupPage from "./pages/SignupPage";
+import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import SettingsPage from "./pages/SettingsPage";
+import HomePage from "./pages/HomePage";
 import { useAuthStore } from "./store/useAuthStore";
 
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
+import { useThemeStore } from "./store/useThemeStore";
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { theme } = useThemeStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
 
+  console.log(onlineUsers);
   useEffect(() => {
     checkAuth();
+    document.documentElement.setAttribute("data-theme", theme);
   }, [checkAuth]);
 
   console.log(authUser);
@@ -25,8 +29,9 @@ const App = () => {
       </div>
     );
   }
+
   return (
-    <>
+    <div data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
@@ -52,7 +57,7 @@ const App = () => {
       </Routes>
 
       <Toaster />
-    </>
+    </div>
   );
 };
 

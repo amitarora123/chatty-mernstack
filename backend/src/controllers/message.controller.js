@@ -7,7 +7,7 @@ import { asyncHandler } from "../utils/AsyncHandler.js";
 const getUsersForSidebar = asyncHandler(async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
-    const users = User.find({ _id: { $ne: loggedInUserId } }).select(
+    const users = await User.find({ _id: { $ne: loggedInUserId } }).select(
       "-password "
     );
 
@@ -49,13 +49,12 @@ const getMessages = asyncHandler(async (req, res) => {
 
 const sendMessage = async (req, res) => {
   try {
-    const { text } = req.body;
-    const image = req.file.path;
+    const { text, image } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
     let imageUrl;
-    
+
     if (image) {
       const uploadedResponse = await cloudinary.uploader.upload(image);
       imageUrl = uploadedResponse.secure_url;
